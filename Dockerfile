@@ -1,11 +1,13 @@
-# Use Java 17 base image
 FROM eclipse-temurin:17-jdk-alpine
 
-# Expose Eureka Server port
-EXPOSE 8761
+# Set working directory
+WORKDIR /app
 
 # Copy jar file
-ADD target/*.jar app.jar
+COPY target/eureka-server.jar app.jar
 
-# Run application
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+# Expose Eureka server port
+EXPOSE 8761
+
+# Run the application
+ENTRYPOINT ["java","-jar","app.jar"]
